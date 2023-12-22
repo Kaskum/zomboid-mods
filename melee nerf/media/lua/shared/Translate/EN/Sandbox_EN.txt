@@ -1,0 +1,9 @@
+Sandbox_EN = {
+  Sandbox_LanttuMeleeNerf = "Lanttuchef's Melee Nerf",
+  Sandbox_BoostWeaponMinDamageMultiplier = "Boost Weapon Min Damage Multiplier",
+  Sandbox_BoostWeaponMaxDamageMultiplier = "Boost Weapon Max Damage Multiplier",
+  Sandbox_BoostWeaponCriticalHitChanceMultiplier = "Boost Weapon Critical Hit Chance Multiplier",
+  Sandbox_NerfWeaponMinDamageMultiplier = "Nerf Weapon Min Damage Multiplier",
+  Sandbox_NerfWeaponMaxDamageMultiplier = "Nerf Weapon Max Damage Multiplier",
+  Sandbox_NerfWeaponCriticalHitChanceMultiplier = "Nerf Weapon Critical Hit Chance Multiplier",
+}

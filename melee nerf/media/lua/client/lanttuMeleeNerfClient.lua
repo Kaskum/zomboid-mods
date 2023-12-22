@@ -107,33 +107,30 @@ LanttuMeleeNerf.restoreWeaponStats = function (hand_weapon)
 end
 
 LanttuMeleeNerf.doNerf = function (character, hand_weapon)
-	print("NERF NERF")
 	LanttuMeleeNerf.initializeWeaponStats(hand_weapon)
-	hand_weapon:setMinDamage(hand_weapon:getModData().meleenerf.minDamage * 0.4)
-	hand_weapon:setMaxDamage(hand_weapon:getModData().meleenerf.maxDamage * 0.4)
+	hand_weapon:setMinDamage(hand_weapon:getModData().meleenerf.minDamage * SandboxVars.LanttuMeleeNerf.NerfWeaponMinDamageMultiplier)
+	hand_weapon:setMaxDamage(hand_weapon:getModData().meleenerf.maxDamage * SandboxVars.LanttuMeleeNerf.NerfWeaponMaxDamageMultiplier)
 
-	if LanttuMeleeNerf.isCriticalHit(hand_weapon, 0.1) then
+	if LanttuMeleeNerf.isCriticalHit(hand_weapon, SandboxVars.LanttuMeleeNerf.NerfWeaponCriticalHitChanceMultiplier) then
 		character:setCriticalHit(true)
 	end
 end
 
 LanttuMeleeNerf.doBoost = function (character, hand_weapon)
-	print("BOOST BOOST")
 	LanttuMeleeNerf.initializeWeaponStats(hand_weapon)
-	hand_weapon:setMinDamage(hand_weapon:getModData().meleenerf.minDamage * 1.2)
-	hand_weapon:setMaxDamage(hand_weapon:getModData().meleenerf.maxDamage * 1.2)
+	hand_weapon:setMinDamage(hand_weapon:getModData().meleenerf.minDamage * SandboxVars.LanttuMeleeNerf.BoostWeaponMinDamageMultiplier)
+	hand_weapon:setMaxDamage(hand_weapon:getModData().meleenerf.maxDamage * SandboxVars.LanttuMeleeNerf.BoostWeaponMaxDamageMultiplier)
 
-	if LanttuMeleeNerf.isCriticalHit(hand_weapon, 1.4) then
+	if LanttuMeleeNerf.isCriticalHit(hand_weapon, SandboxVars.LanttuMeleeNerf.BoostWeaponCriticalHitChanceMultiplier) then
 		character:setCriticalHit(true)
 	end
 end
 
 LanttuMeleeNerf.doBasic = function (character, hand_weapon)
-	print("DO BASIC")
 	LanttuMeleeNerf.initializeWeaponStats(hand_weapon)
 end
 
-LanttuMeleeNerf.OnWeaponSwing = function (character, hand_weapon)
+LanttuMeleeNerf.onWeaponSwing = function (character, hand_weapon)
 	if not character or character:isDead() then return end
 	if not hand_weapon then return end
 	if hand_weapon:isRanged() then return end
@@ -148,51 +145,15 @@ LanttuMeleeNerf.OnWeaponSwing = function (character, hand_weapon)
 	end
 end
 
-LanttuMeleeNerf.OnWeaponSwingHitPoint = function (character, hand_weapon)
-end
-
-LanttuMeleeNerf.OnPlayerAttackFinished = function (character, hand_weapon)
+LanttuMeleeNerf.onPlayerAttackFinished = function (character, hand_weapon)
 	if not hand_weapon then return end
 	if hand_weapon:isRanged() then return end
 	LanttuMeleeNerf.restoreWeaponStats(hand_weapon)
 end
 
-LanttuMeleeNerf.OnWeaponHitCharacter = function (character, target, hand_weapon, damage)
-	if not character then return end
-	if not target then return end
-	if not hand_weapon then return end
-	if hand_weapon:isRanged() then return end
-	print(string.format('HIT WITH DAMAGE [%s] HEALTH: [%f] isDEAD: %s', tostring(damage or "nil"), target:getHealth(), tostring(target:isDead())))
+LanttuMeleeNerf.initializeMod = function (character)
+	Events.OnWeaponSwing.Add(LanttuMeleeNerf.onWeaponSwing)
+	Events.OnPlayerAttackFinished.Add(LanttuMeleeNerf.onPlayerAttackFinished)
 end
 
-LanttuMeleeNerf.OnHitZombie = function (zombie, character, body_part_type, hand_weapon)
-	if not zombie then return end
-	if not character then return end
-	if not hand_weapon then return end
-	if hand_weapon:isRanged() then return end
-	--print(string.format('Zombie HEALTH: %f', zombie:getHealth()))
-end
-
-LanttuMeleeNerf.OnPlayerMove = function (character)
-end
-
-LanttuMeleeNerf.OnPlayerUpdate = function (player)
-end
-
-LanttuMeleeNerf.AddXP = function (character, perk, level)
-	--print(string.format("XP GAINED [%f]", level))
-end
-
-LanttuMeleeNerf.InitializeEvents = function (player)
-	Events.OnWeaponSwing.Add(LanttuMeleeNerf.OnWeaponSwing)
-	Events.OnWeaponSwingHitPoint.Add(LanttuMeleeNerf.OnWeaponSwingHitPoint)
-	Events.OnWeaponHitCharacter.Add(LanttuMeleeNerf.OnWeaponHitCharacter)
-	Events.OnHitZombie.Add(LanttuMeleeNerf.OnHitZombie)
-	Events.OnPlayerAttackFinished.Add(LanttuMeleeNerf.OnPlayerAttackFinished)
-	Events.OnPlayerMove.Add(LanttuMeleeNerf.OnPlayerMove)
-	Events.OnPlayerUpdate.Add(LanttuMeleeNerf.OnPlayerUpdate)
-	Events.AddXP.Add(LanttuMeleeNerf.AddXP)
-end
-
---print("Lanttuchef's Melee weapon initialize events")
-Events.OnGameStart.Add(LanttuMeleeNerf.InitializeEvents)
+Events.OnGameStart.Add(LanttuMeleeNerf.initializeMod)
