@@ -1,0 +1,85 @@
+VERSION = 1,
+
+option LanttuMeleeTweak.ForwardWeaponMinDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 1.3,
+  page = LanttuMeleeTweak,
+  translation = ForwardWeaponMinDamageMultiplier,
+}
+
+option LanttuMeleeTweak.ForwardWeaponMaxDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 1.3,
+  page = LanttuMeleeTweak,
+  translation = ForwardWeaponMaxDamageMultiplier,
+}
+
+option LanttuMeleeTweak.ForwardDisableCriticalDamage
+{
+  type = boolean,
+  default = false,
+  page = LanttuMeleeTweak,
+  translation = ForwardDisableCriticalDamage,
+}
+
+option LanttuMeleeTweak.BackwardWeaponMinDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.2,
+  page = LanttuMeleeTweak,
+  translation = BackwardWeaponMinDamageMultiplier,
+}
+
+option LanttuMeleeTweak.BackwardWeaponMaxDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.2,
+  page = LanttuMeleeTweak,
+  translation = BackwardWeaponMaxDamageMultiplier,
+}
+
+option LanttuMeleeTweak.BackwardDisableCriticalDamage
+{
+  type = boolean,
+  default = true,
+  page = LanttuMeleeTweak,
+  translation = BackwardDisableCriticalDamage,
+}
+
+option LanttuMeleeTweak.SidewaysWeaponMinDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.7,
+  page = LanttuMeleeTweak,
+  translation = SidewaysWeaponMinDamageMultiplier,
+}
+
+option LanttuMeleeTweak.SidewaysWeaponMaxDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.7,
+  page = LanttuMeleeTweak,
+  translation = SidewaysWeaponMaxDamageMultiplier,
+}
+
+option LanttuMeleeTweak.SidewaysDisableCriticalDamage
+{
+  type = boolean,
+  default = false,
+  page = LanttuMeleeTweak,
+  translation = SidewaysDisableCriticalDamage,
+}
