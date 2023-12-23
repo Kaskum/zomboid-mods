@@ -106,17 +106,7 @@ LanttuMeleeTweak.restoreWeaponStats = function (hand_weapon)
   hand_weapon:setMaxDamage(hand_weapon:getModData().meleetweak.maxDamage)
 end
 
-LanttuMeleeTweak.doBackward = function (character, hand_weapon)
-  LanttuMeleeTweak.initializeWeaponStats(hand_weapon)
-  hand_weapon:setMinDamage(hand_weapon:getModData().meleetweak.minDamage * SandboxVars.LanttuMeleeTweak.BackwardWeaponMinDamageMultiplier)
-  hand_weapon:setMaxDamage(hand_weapon:getModData().meleetweak.maxDamage * SandboxVars.LanttuMeleeTweak.BackwardWeaponMaxDamageMultiplier)
-
-  if LanttuMeleeTweak.isCriticalHit(hand_weapon, SandboxVars.LanttuMeleeTweak.BackwardWeaponCriticalHitChanceMultiplier) then
-    character:setCriticalHit(true)
-  end
-end
-
-LanttuMeleeTweak.doForward = function (character, hand_weapon)
+LanttuMeleeTweak.tweakForward = function (character, hand_weapon)
   LanttuMeleeTweak.initializeWeaponStats(hand_weapon)
   hand_weapon:setMinDamage(hand_weapon:getModData().meleetweak.minDamage * SandboxVars.LanttuMeleeTweak.ForwardWeaponMinDamageMultiplier)
   hand_weapon:setMaxDamage(hand_weapon:getModData().meleetweak.maxDamage * SandboxVars.LanttuMeleeTweak.ForwardWeaponMaxDamageMultiplier)
@@ -126,7 +116,24 @@ LanttuMeleeTweak.doForward = function (character, hand_weapon)
   end
 end
 
-LanttuMeleeTweak.doDefault = function (character, hand_weapon)
+LanttuMeleeTweak.tweakBackward = function (character, hand_weapon)
+  LanttuMeleeTweak.initializeWeaponStats(hand_weapon)
+  hand_weapon:setMinDamage(hand_weapon:getModData().meleetweak.minDamage * SandboxVars.LanttuMeleeTweak.BackwardWeaponMinDamageMultiplier)
+  hand_weapon:setMaxDamage(hand_weapon:getModData().meleetweak.maxDamage * SandboxVars.LanttuMeleeTweak.BackwardWeaponMaxDamageMultiplier)
+  character:setCriticalHit(LanttuMeleeTweak.isCriticalHit(hand_weapon, SandboxVars.LanttuMeleeTweak.BackwardWeaponCriticalHitChanceMultiplier))
+end
+
+LanttuMeleeTweak.tweakSideways = function (character, hand_weapon)
+  LanttuMeleeTweak.initializeWeaponStats(hand_weapon)
+  hand_weapon:setMinDamage(hand_weapon:getModData().meleetweak.minDamage * SandboxVars.LanttuMeleeTweak.SidewaysWeaponMinDamageMultiplier)
+  hand_weapon:setMaxDamage(hand_weapon:getModData().meleetweak.maxDamage * SandboxVars.LanttuMeleeTweak.SidewaysWeaponMaxDamageMultiplier)
+
+  if LanttuMeleeTweak.isCriticalHit(hand_weapon, SandboxVars.LanttuMeleeTweak.SidewaysWeaponCriticalHitChanceMultiplier) then
+    character:setCriticalHit(true)
+  end
+end
+
+LanttuMeleeTweak.useDefault = function (character, hand_weapon)
   LanttuMeleeTweak.initializeWeaponStats(hand_weapon)
 end
 
@@ -137,11 +144,13 @@ LanttuMeleeTweak.onWeaponSwing = function (character, hand_weapon)
 
   local walk_direction = LanttuMeleeTweak.walkDirection(character)
   if walk_direction == LanttuMeleeTweak.MoveDirection.FORWARD then
-    LanttuMeleeTweak.doForward(character, hand_weapon)
+    LanttuMeleeTweak.tweakForward(character, hand_weapon)
   elseif walk_direction == LanttuMeleeTweak.MoveDirection.BACKWARD then
-    LanttuMeleeTweak.doBackward(character, hand_weapon)
+    LanttuMeleeTweak.tweakBackward(character, hand_weapon)
+  elseif walk_direction == LanttuMeleeTweak.MoveDirection.SIDEWAYS then
+    LanttuMeleeTweak.tweakSideways(character, hand_weapon)
   else
-    LanttuMeleeTweak.doDefault(character, hand_weapon)
+    LanttuMeleeTweak.useDefault(character, hand_weapon)
   end
 end
 
