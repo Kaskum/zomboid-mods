@@ -1,0 +1,61 @@
+VERSION = 1,
+
+option LanttuMeleeTweak.ForwardWeaponMinDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 1.3,
+  page = LanttuMeleeTweak,
+  translation = ForwardWeaponMinDamageMultiplier,
+}
+
+option LanttuMeleeTweak.ForwardWeaponMaxDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 1.3,
+  page = LanttuMeleeTweak,
+  translation = ForwardWeaponMaxDamageMultiplier,
+}
+
+option LanttuMeleeTweak.ForwardWeaponCriticalHitChanceMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 1.4,
+  page = LanttuMeleeTweak,
+  translation = ForwardWeaponCriticalHitChanceMultiplier,
+}
+
+option LanttuMeleeTweak.BackwardWeaponMinDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.4,
+  page = LanttuMeleeTweak,
+  translation = BackwardWeaponMinDamageMultiplier,
+}
+
+option LanttuMeleeTweak.BackwardWeaponMaxDamageMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.4,
+  page = LanttuMeleeTweak,
+  translation = BackwardWeaponMaxDamageMultiplier,
+}
+
+option LanttuMeleeTweak.BackwardWeaponCriticalHitChanceMultiplier
+{
+  type = double,
+  min = 0,
+  max = 10,
+  default = 0.1,
+  page = LanttuMeleeTweak,
+  translation = BackwardWeaponCriticalHitChanceMultiplier,
+}

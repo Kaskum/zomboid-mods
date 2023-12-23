@@ -1,0 +1,9 @@
+Sandbox_EN = {
+  Sandbox_LanttuMeleeTweak = "Lanttuchef's Melee Tweak",
+  Sandbox_ForwardWeaponMinDamageMultiplier = "Forward Weapon Min Damage Multiplier",
+  Sandbox_ForwardWeaponMaxDamageMultiplier = "Forward Weapon Max Damage Multiplier",
+  Sandbox_ForwardWeaponCriticalHitChanceMultiplier = "Forward Weapon Critical Hit Chance Multiplier",
+  Sandbox_BackwardWeaponMinDamageMultiplier = "Backward Weapon Min Damage Multiplier",
+  Sandbox_BackwardWeaponMaxDamageMultiplier = "Backward Weapon Max Damage Multiplier",
+  Sandbox_BackwardWeaponCriticalHitChanceMultiplier = "Backward Weapon Critical Hit Chance Multiplier",
+}
