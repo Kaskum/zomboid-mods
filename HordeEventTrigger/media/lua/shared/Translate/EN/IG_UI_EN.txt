@@ -1,0 +1,5 @@
+IGUI_EN = {
+    IGUI_Horde_Event_Id = "Horde Event Id",
+    IGUI_Trigger_Time = "Trigger Time",
+    IGUI_Add = "Add",
+}
